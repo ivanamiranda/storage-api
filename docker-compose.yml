@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: cloud_db
+      POSTGRES_USER: ivana_teste
+      POSTGRES_PASSWORD: senha12345
+    ports:
+      - "5432:5432"
+
+  localstack:
+    image: localstack/localstack:3.5
+    environment:
+      - SERVICES=s3
+      - DEFAULT_REGION=us-east-1
+    ports:
+      - "4566:4566"
