@@ -1,86 +1,89 @@
-# Storage Cloud API 🚀
+# ☁️ Storage Cloud API
 
-API REST desenvolvida com Kotlin e Spring Boot para upload e gerenciamento de arquivos, utilizando PostgreSQL para persistência de metadados e AWS S3 para armazenamento de objetos.
+API REST desenvolvida com Kotlin + Spring Boot para upload e gerenciamento de arquivos utilizando armazenamento S3 e persistência de metadados em PostgreSQL.
 
-O projeto simula uma arquitetura cloud utilizando Docker e LocalStack, permitindo desenvolvimento e testes locais sem necessidade de uma conta AWS real.
-
----
-
-# 📌 Objetivo do Projeto
-
-Este projeto foi desenvolvido com foco em estudos de:
-
-- Backend com Spring Boot
-- Integração com serviços AWS
-- Armazenamento de arquivos no S3
-- Persistência de dados com PostgreSQL
-- Containers com Docker
-- Arquitetura baseada em APIs REST
-- Simulação de ambiente cloud local com LocalStack
+O projeto simula uma arquitetura cloud utilizando Docker + LocalStack, permitindo desenvolvimento local sem necessidade de uma conta AWS real.
 
 ---
 
-# 🛠 Tecnologias Utilizadas
+## 🚀 Tecnologias
 
-## Backend
+### Backend
 - Kotlin
 - Spring Boot 3
 - Spring Data JPA
 - Hibernate
 
-## Banco de Dados
+### Banco de Dados
 - PostgreSQL
 
-## Cloud & Storage
+### Cloud & Storage
 - AWS S3
 - LocalStack
 
-## DevOps
+### DevOps
 - Docker
 - Docker Compose
 
-## Build Tool
+### Build Tool
 - Gradle
 
 ---
 
-# ☁️ Arquitetura do Projeto
+# 📌 Funcionalidades
 
-Fluxo da aplicação:
-
-1. O usuário envia um arquivo via endpoint REST
-2. A API recebe o arquivo
-3. O arquivo é enviado para o bucket S3 (LocalStack)
-4. Os metadados são persistidos no PostgreSQL
-5. A API retorna os dados do upload em JSON
+- Upload de arquivos
+- Armazenamento de arquivos em S3
+- Persistência de metadados no PostgreSQL
+- Containers Docker
+- Simulação local da AWS com LocalStack
 
 ---
 
-# 🚀 Como Executar o Projeto
+# ☁️ Arquitetura
+
+```text
+Cliente
+   ↓
+Spring Boot API
+   ↓
+┌───────────────┐
+│ LocalStack S3 │
+└───────────────┘
+   ↓
+PostgreSQL
+```
+
+---
+
+# 🚀 Como executar o projeto
 
 ## Pré-requisitos
 
 - Docker
-- Java 17+
-- Gradle
+- Docker Compose
 
 ---
 
-## Subir containers
+## Clonar repositório
 
 ```bash
-docker compose up -d
+git clone https://github.com/ivanamiranda/storage-api.git
+```
+
+```bash
+cd storage-api
 ```
 
 ---
 
-## Executar aplicação
+## Subir aplicação
 
 ```bash
-./gradlew bootRun
+docker compose up --build
 ```
 
-A aplicação ficará disponível em:
+Aplicação disponível em:
 
 ```text
 http://localhost:8080
@@ -88,9 +91,9 @@ http://localhost:8080
 
 ---
 
-# 📂 Endpoint Disponível
+# 📂 Endpoint disponível
 
-## Upload de Arquivos
+## Upload de arquivos
 
 ### POST
 
@@ -98,7 +101,7 @@ http://localhost:8080
 POST /api/files/upload
 ```
 
-### Form-data
+### Body (form-data)
 
 | Key  | Type |
 |------|------|
@@ -106,7 +109,7 @@ POST /api/files/upload
 
 ---
 
-# ✅ Exemplo de Resposta
+# ✅ Exemplo de resposta
 
 ```json
 {
@@ -120,26 +123,26 @@ POST /api/files/upload
 
 ---
 
-# 📚 Conceitos Aplicados
+# 📚 Conceitos aplicados
 
-- API REST
+- REST API
 - Upload Multipart
-- Integração com S3
-- Persistência com JPA
+- Integração com AWS S3
+- Persistência com JPA/Hibernate
 - Containers Docker
-- Cloud Simulation
 - Arquitetura Backend
-- Injeção de Dependência
+- Cloud Simulation
+- Dependency Injection
 
 ---
 
-# 🎯 Melhorias Futuras
+# 🎯 Melhorias futuras
 
 - Download de arquivos
 - Deleção de arquivos
 - Swagger/OpenAPI
 - Autenticação JWT
-- Deploy na AWS
+- Deploy AWS
 - Testes automatizados
 - CI/CD com GitHub Actions
 
@@ -148,3 +151,6 @@ POST /api/files/upload
 # 👩‍💻 Desenvolvido por
 
 Ivana Miranda
+
+- LinkedIn: www.linkedin.com/in/ivana-miranda-736b4022
+- GitHub: https://github.com/ivanamiranda
