@@ -15,7 +15,7 @@ class S3Config {
     fun s3Client(): S3Client {
 
         return S3Client.builder()
-            .endpointOverride(URI.create("http://localhost:4566"))
+            .endpointOverride(URI.create("http://localstack:4566"))
             .region(Region.US_EAST_1)
             .credentialsProvider(
                 StaticCredentialsProvider.create(

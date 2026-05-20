@@ -4,6 +4,7 @@ plugins {
 	id("org.springframework.boot") version "3.5.14"
 	id("io.spring.dependency-management") version "1.1.7"
 	kotlin("plugin.jpa") version "1.9.25"
+    id("com.google.cloud.tools.jib") version "3.5.3"
 }
 
 group = "com.ivanamiranda"
@@ -46,4 +47,27 @@ allOpen {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+jib {
+    from {
+        image = "eclipse-temurin:17-jre"
+    }
+
+    to {
+        image = "storage-api"
+        tags = setOf("latest")
+    }
+
+    container {
+        ports = listOf("8080")
+
+        jvmFlags = listOf(
+            "-XX:+UseContainerSupport",
+            "-XX:MaxRAMPercentage=80.0",
+            "-XX:InitialRAMPercentage=80.0"
+        )
+
+        creationTime = "USE_CURRENT_TIMESTAMP"
+    }
 }

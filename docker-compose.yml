@@ -9,9 +9,17 @@ services:
       - "5432:5432"
 
   localstack:
-    image: localstack/localstack:3.5
+    image: localstack/localstack:3.0
     environment:
       - SERVICES=s3
       - DEFAULT_REGION=us-east-1
     ports:
       - "4566:4566"
+
+  storage-api:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - localstack
