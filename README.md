@@ -1,8 +1,8 @@
 # ☁️ Storage Cloud API
 
-API REST desenvolvida com Kotlin + Spring Boot para upload e gerenciamento de arquivos utilizando armazenamento S3 e persistência de metadados em PostgreSQL.
+API REST desenvolvida com Kotlin + Spring Boot para upload e gerenciamento de arquivos utilizando AWS S3 e persistência de metadados em PostgreSQL.
 
-O projeto simula uma arquitetura cloud utilizando Docker + LocalStack, permitindo desenvolvimento local sem necessidade de uma conta AWS real.
+O projeto simula uma arquitetura cloud real utilizando Docker + LocalStack, permitindo desenvolvimento e testes locais sem necessidade de uma conta AWS.
 
 ---
 
@@ -25,22 +25,28 @@ O projeto simula uma arquitetura cloud utilizando Docker + LocalStack, permitind
 - Docker
 - Docker Compose
 
-### Build Tool
+### Documentação
+- Swagger / OpenAPI
+
+### Ferramentas
+- Git
+- GitHub
 - Gradle
 
 ---
 
-# 📌 Funcionalidades
+## 📌 Funcionalidades
 
 - Upload de arquivos
 - Armazenamento de arquivos em S3
 - Persistência de metadados no PostgreSQL
+- API REST documentada com Swagger
 - Containers Docker
 - Simulação local da AWS com LocalStack
 
 ---
 
-# ☁️ Arquitetura
+## ☁️ Arquitetura
 
 ```text
 Cliente
@@ -53,63 +59,97 @@ Spring Boot API
    ↓
 PostgreSQL
 ```
+## 📁 Estrutura do projeto
 
+```text
+src
+└── main
+    └── kotlin
+        └── com.ivanamiranda.storage_api
+            ├── controller
+            │   └── FileController.kt
+            │
+            ├── service
+            │   └── FileService.kt
+            │
+            ├── repository
+            │   └── FileRepository.kt
+            │
+            ├── model
+            │   └── FileMetadata.kt
+            │
+            ├── config
+            │   └── S3Config.kt
+            │
+            └── StorageApiApplication.kt
+```
+
+### Organização das camadas
+
+| Camada | Responsabilidade |
+|---|---|
+| Controller | Receber requisições HTTP |
+| Service | Regras de negócio |
+| Repository | Acesso ao banco de dados |
+| Model | Entidades e objetos persistidos |
+| Config | Configurações AWS/S3 |
 ---
 
-# 🚀 Como executar o projeto
+## 🚀 Como executar o projeto
 
-## Pré-requisitos
+### Pré-requisitos
 
 - Docker
 - Docker Compose
+- Java 17
 
 ---
 
-## Clonar repositório
+### Clonar repositório
 
 ```bash
 git clone https://github.com/ivanamiranda/storage-api.git
-```
-
-```bash
 cd storage-api
 ```
 
 ---
 
-## Subir aplicação
+### Subir aplicação
 
 ```bash
 docker compose up --build
 ```
 
-Aplicação disponível em:
+---
 
-```text
-http://localhost:8080
-```
+### Aplicação disponível em
+
+| Serviço | URL |
+|---|---|
+| API | http://localhost:8080 |
+| Swagger | http://localhost:8080/swagger-ui/index.html |
 
 ---
 
-# 📂 Endpoint disponível
+## 📂 Endpoints
 
-## Upload de arquivos
-
-### POST
+### Upload de arquivos
 
 ```http
 POST /api/files/upload
 ```
 
-### Body (form-data)
+### Request
 
-| Key  | Type |
-|------|------|
+multipart/form-data
+
+| Campo | Tipo |
+|---|---|
 | file | File |
 
 ---
 
-# ✅ Exemplo de resposta
+## ✅ Exemplo de resposta
 
 ```json
 {
@@ -117,38 +157,40 @@ POST /api/files/upload
   "fileName": "arquivo.txt",
   "fileType": "text/plain",
   "s3Key": "uuid_arquivo.txt",
-  "uploadDate": "2026-05-15T18:06:40"
+  "uploadDate": "2026-05-21T02:16:29"
 }
 ```
 
 ---
 
-# 📚 Conceitos aplicados
+## 📚 Conceitos aplicados
 
 - REST API
 - Upload Multipart
-- Integração com AWS S3
+- AWS S3 Integration
 - Persistência com JPA/Hibernate
-- Containers Docker
+- Dockerização
 - Arquitetura Backend
-- Cloud Simulation
+- Cloud Computing
 - Dependency Injection
+- Documentação com Swagger/OpenAPI
+- Versionamento com Git
 
 ---
 
-# 🎯 Melhorias futuras
+## 🎯 Melhorias futuras
 
 - Download de arquivos
 - Deleção de arquivos
-- Swagger/OpenAPI
 - Autenticação JWT
-- Deploy AWS
 - Testes automatizados
 - CI/CD com GitHub Actions
+- Deploy AWS
+- Monitoramento e observabilidade
 
 ---
 
-# 👩‍💻 Desenvolvido por
+## 👩‍💻 Desenvolvido por
 
 Ivana Miranda
 
